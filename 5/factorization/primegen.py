@@ -7,6 +7,8 @@ def primegen(upper):
 	>>> list(primegen(30))
 	[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 	"""
+
+	# http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 	marked = [False] * (upper - 2)
 	
 	# using generator here lets us lazily evaluate whether
@@ -29,7 +31,3 @@ def primegen(upper):
 			yield p
 
 	return generate_primes()
-
-if __name__ == '__main__':
-	import doctest
-	doctest.testmod()

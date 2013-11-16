@@ -22,7 +22,4 @@ def factors(n):
 			n = n / p
 	if n > 1:
 		yield n
-
-if __name__ == '__main__':
-	import doctest
-	doctest.testmod()
+		
