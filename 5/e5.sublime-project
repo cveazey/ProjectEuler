@@ -1,0 +1,16 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/cbv/Development/ProjectEuler/5"
+		}
+	],
+	"build_systems":
+	[
+		{
+			"name": "nose",
+			"cmd": ["/bin/bash", "$project_path/nosetests.sh"],
+			"working_dir": "$project_path"
+		}
+	]
+}
