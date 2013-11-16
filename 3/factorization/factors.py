@@ -3,9 +3,9 @@ from factorization.primegen import primegen
 def factors(n):
 	"""generator function yielding the prime factors of n
 	Heavily derived from http://en.wikipedia.org/wiki/Trial_division
-	>>> [p for p in factors(14)]
+	>>> list(factors(14))
 	[2, 7]
-	>>> [p for p in factors(13195)]
+	>>> list(factors(13195))
 	[5, 7, 13, 29]
 	"""
 

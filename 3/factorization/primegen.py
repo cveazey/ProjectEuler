@@ -2,9 +2,9 @@ import itertools
 
 def primegen(upper):
 	"""Return generator yielding all primes less than upper 
-	>>> [p for p in primegen(10)]
+	>>> list(primegen(10))
 	[2, 3, 5, 7]
-	>>> [p for p in primegen(30)]
+	>>> list(primegen(30))
 	[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 	"""
 	marked = [False] * (upper - 2)
