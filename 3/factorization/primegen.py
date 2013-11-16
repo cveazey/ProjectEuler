@@ -1,0 +1,2 @@
+def primegen(upper):
+	pass
