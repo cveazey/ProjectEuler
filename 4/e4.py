@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import bisect
+import itertools
 
 def is_int_palindrome(num):
 	"""Returns True if input is a palindrome number
@@ -28,37 +28,22 @@ def is_int_palindrome(num):
 	return palindrome
 
 
+def products(r1,r2):
+	product = itertools.product(r1, r2)
+	after_mult = map(lambda x: x[0] * x[1], product)
+	after_sort = sorted(after_mult)
+	return after_sort
+
 def three_digit_products():
-	# """Generates products of three digit numbers, increasing order
+	return products(range(999,900,-1),range(999,900,-1))	
 
-	# >>> prods = three_digit_products()
-	# ...
-	# >>> prods[-1]
-	# 998001
-	# >>> prods[-2]
-	# 997002
-
-	# """
-
-	result = []
-	for i in xrange(999,99,-1):
-		for j in xrange(i,99,-1):
-			bisect.insort(result, i*j)
-	return result
-	
-
-def gen_products_two_digits():
-	result = []
-	for i in xrange(99,9,-1):
-		for j in xrange(i,9,-1):
-			bisect.insort(result, i*j)
-	return result
-
+def two_digit_products():
+	return products(range(99,90,-1),range(99,90,-1))
 
 def larget_palindrome(numbers):
 	"""Returns the last palindrome number in the iterable arg numbers
 	
-	>>> gen = gen_products_two_digits()
+	>>> gen = two_digit_products()
 	...
 	>>> larget_palindrome(gen)
 	9009
@@ -70,8 +55,8 @@ def larget_palindrome(numbers):
 
 
 def main():
-	result = larget_palindrome(three_digit_products())
-	print('result is {0}'.format(result))
+	print('2 digits is {0}'.format(larget_palindrome(two_digit_products())))
+	# print('3 digits is {0}'.format(larget_palindrome(three_digit_products())))
 
 if __name__ == '__main__':
 	main()
