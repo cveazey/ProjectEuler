@@ -2,17 +2,27 @@
 
 from factorization.primegen import primegen
 
-def main():
-	# from http://en.wikipedia.org/wiki/Prime_number_theorem#Table_of_.CF.80.28x.29.2C_x_.2F_ln_x.2C_and_li.28x.29,
-	# we see that 10^6 has just slightly less than 10k primes.
-	# so start by generating primes < 2 mil; see if that's enough
-	primes = list(primegen(2000000))
+def prime_at_index(index,upper):
+	""" does what it says kinda
+	>>> prime_at_index(10000,200000)
+	104743
+	"""
+	primes = list(primegen(upper))
 	try:
-		result = primes[10000]
+		return primes[index]
 	except IndexError:
-		print('too few primes')
-		return
-	print('10001st prime = {0}'.format(result))
+		raise ValueError("upper bound not high enough")
+	
+def main():
+	upper = 100000
+	while True:
+		try:
+			p = prime_at_index(10000,upper)
+			break
+		except ValueError:
+			upper += 100000
+			print('too few primes, incrementing upper to {0}'.format(upper))
+	print('10001st prime = {0}'.format(p))
 
 if __name__ == '__main__':
 	main()
