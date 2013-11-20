@@ -14,7 +14,7 @@ def prime_at_index(index,upper):
 		raise ValueError("upper bound not high enough")
 	
 def main():
-	upper = 100000
+	upper = 200000
 	while True:
 		try:
 			p = prime_at_index(10000,upper)

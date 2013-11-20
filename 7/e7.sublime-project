@@ -8,9 +8,17 @@
 	"build_systems":
 	[
 		{
+			"selector": "source.python",
 			"name": "nose",
 			"cmd": ["/bin/bash", "nosetests.sh"],
-			"working_dir": "$project_path"
+			"working_dir": "$project_path",
+			"variants": 
+			[
+				{
+					"name": "Run",
+					"cmd": ["/bin/bash", "run.sh", "$file"]
+				}
+			]
 		}
 	]
 }
