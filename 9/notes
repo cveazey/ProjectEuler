@@ -1,0 +1,64 @@
+a = m^2 - n^2
+b = 2mn
+c = m^2 + n^2
+
+m^2 - n^2 + 2mn + m^2 + n^2 = 1000
+
+2m^2 + 2mn = 1000
+
+m^2 + mn = 500
+m + n = 500 / m
+
+prime factorization of 500 = 2 * 2 * 5 * 5 => m = 2^2*5^2*p
+m > n => m+n >= 3 => m < 250
+
+multiples of 2^2 < 250: xrange(4, 250, 4)
+multiples of 5^2 < 250: xrange(25, 250, 25)
+
+possible m's: 4, 50, 20, 25, 100, 125
+
+n = (500 / m) - m
+
+lambda m: (m, (500 / m) - m)
+
+20, 5
+
+a = 20^2 - 5^2
+b = 2 * 20 * 5
+c = 20^2 + 5^2
+
+
+Given a+b+c = k, then if there is a primitive pythagorean triple satisfying such a constraint, it also satisfies:
+
+m + n = k/2m
+
+where m,n are positive integers and m > n. *
+=> k/2m >= 3
+=> m < k/4 *
+
+2m must evenly divide k *
+k/2 = p1^k1 * p2^k2 * ... * pn^kn
+m = (p1^k1)^? * (p2^k2)^? * ... * (pn^kn)^? * (? = 0 or 1)
+To put this constraint another way, m is an element of the set Sm of all	 i's s.t. i = n(pj^kj), i < k/4
+
+Generate scm: (set of candidate m's)
+	Find prime factorization of k/2: p1^k1 * p2^k2 * ... * pn^kn
+	For each pi^ki, find all j's s.t. j = n(pi^ki), j < k/4
+
+	scm = set(itertools.chain(xrange(p1^k1, k/4, p1^k1), xrange(p2^k2, k/4, p2^k2), ... , xrange(pn^kn, k/4, pn^kn)))
+
+	for cp in itertools.ifilter(lambda (m,n): m>n and n>0, itertools.imap(lambda cm: (cm, (k/(2 * cm)) - cm), itertools.chain(ranges))):
+		print cp
+cp (candidate pairs) = filter(lambda (m,n): m>n and n>0, map(lambda cm: (cm, k/2*cm - cm), scm))
+
+
+(constraints identified with *'s , 2nd and 3rd satisfied during generation of candidates, 1st satisfied during filter step)
+
+
+import itertools
+k = 1000
+factors = [4, 25]
+multiples = itertools.chain.from_iterable(xrange(f, k/4, f) for f in factors)
+itertools.ifilter(lambda (m,n): m>n and n>0 and not k%(2*m))
+
+filter(lambda(m,n): m>n and n>0 and not 500%m, pairs)

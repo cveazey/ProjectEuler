@@ -1,0 +1,28 @@
+Python 2.7.6 (default, Nov 15 2013, 20:58:04) 
+[GCC 4.2.1 Compatible Apple LLVM 4.2 (clang-425.0.27)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import itertools
+>>> k = 1000
+>>> factors = 4, 25]
+  File "<stdin>", line 1
+    factors = 4, 25]
+                   ^
+SyntaxError: invalid syntax
+>>> factors = [4, 25]
+>>> ranges = [range(f, k/4, f) for f in factors]
+>>> flattened_ranges = list(itertools.chain(*ranges))
+>>> flattened_ranges
+[4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 144, 148, 152, 156, 160, 164, 168, 172, 176, 180, 184, 188, 192, 196, 200, 204, 208, 212, 216, 220, 224, 228, 232, 236, 240, 244, 248, 25, 50, 75, 100, 125, 150, 175, 200, 225]
+>>> possible_pairs = map(lambda m: (m, (k/(2*m)) - m), flattened_ranges)
+>>> filtered_pairs = filter(lambda (m,n): m>n and n>0 and not k%(2*m), possible_pairs)
+>>> filtered_pairs
+[(20, 5)]
+>>> for m,n in filtered_pairs:
+...     a = m**2 - n**2
+...     b = 2 * m * n
+...     c = m**2 + n**2
+...     print a,b,c
+... 
+375 200 425
+>>> 
+
