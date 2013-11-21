@@ -15,7 +15,7 @@ def prime_sieve(upper):
 		yield p
 
 def main():
-	print(sum(list(prime_sieve(2000000))))
+	print(sum(prime_sieve(2000000)))
 
 if __name__ == '__main__':
 	main()
