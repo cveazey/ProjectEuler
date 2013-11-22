@@ -1,0 +1,30 @@
+r,c - row,column
+
+south = r,c; r+1,c; r+2,c; r+3,c
+southeast = r,c; r+1,c+1; r+2,c+2; r+3,c+3
+east = r,c; r,c+1; r,c+2; r,c+3
+northeast = r,c; r-1,c+1; r-2,c+2; r-3,c+3
+
+south = ((0,0), (1,0), (2,0), (3,0))
+southeast = ((0,0), (1,1), (2,2), (3,3))
+east = ((0,0), (0,1), (0,2), (0,3))
+northeast = ((0,0), (-1,1), (-2,2), (-3,3))
+
+def entry(r,c):
+	try:
+		return grid[r][c]
+	except IndexError:
+		return 0
+
+biggest = 0
+for row in rows:
+	for c in columns:
+		for offsets in [south, southeast, east, northeast]:
+			product = 1
+			for delta_r,delta_c in offsets:
+				product = product * entry(r+delta_r,c+delta_c)
+			if product > biggest:
+				biggest = product
+
+
+
