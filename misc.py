@@ -12,6 +12,14 @@ def binomial_coefficient(n,k):
     result = reduce(mul, series)
     return int(result)
     
+def digit_sum(n):
+    sum = 0
+    while n > 0:
+            r = n % 10
+            sum = sum + r
+            n = n / 10
+    return sum
+    
 # def binomial_coefficient(n,k):
 #     if k < 0 or k > n:
 #         return 0
